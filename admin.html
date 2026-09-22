@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forge Admin — Game Center</title>
+<link rel="icon" href="assets/forge-game-center.png"><link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+<header class="topbar"><a class="brand" href="index.html"><img src="assets/forge-game-center.png" alt="Forge Game Center"><span><b>FORGE</b><small>ADMIN PANEL</small></span></a><div class="admin-header-actions"><span id="syncStatus">● Conectando...</span><button id="adminLogoutBtn" class="header-cta" type="button">Sair</button><a class="header-cta" href="index.html">← Site</a></div></header>
+<main class="admin-main">
+  <section id="adminLogin" class="admin-card admin-login-card">
+    <div class="admin-card-head"><div><div class="eyebrow">ACESSO SEGURO</div><h2>Painel Forge</h2><p>Entre com sua conta administrativa para sincronizar os controles com o Supabase.</p></div><div class="admin-live"><span></span><b>SUPABASE</b><small>Sincronização online</small></div></div>
+    <div class="maintenance-form">
+      <label>E-mail<input id="adminEmail" type="email" autocomplete="username" placeholder="seu@email.com"></label>
+      <label>Senha<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></label>
+    </div>
+    <div class="admin-login-actions"><button id="adminLoginBtn" class="admin-primary">Entrar</button><button id="adminSignupBtn" class="admin-secondary">Criar conta</button><button id="claimAdminBtn" class="admin-secondary" hidden>Ativar primeiro administrador</button></div>
+    <p id="adminAuthMessage" class="admin-feedback" role="status" aria-live="polite"></p><p id="adminRuntimeMessage" class="admin-feedback runtime-message" role="status" aria-live="polite">Inicializando painel…</p>
+  </section>
+  <div id="adminControls" hidden>
+  <section class="admin-hero"><div><div class="eyebrow">FORGE CONTROL CENTER</div><h1>Painel administrativo</h1><p>Controle o estado de cada jogo e coloque o Game Center inteiro em manutenção quando precisar.</p></div><div class="admin-live"><span></span><b>SUPABASE ONLINE</b><small id="adminUserLabel">Sincronização ativa</small></div></section>
+
+  <section class="admin-card">
+    <div class="admin-card-head"><div><div class="eyebrow">JOGOS</div><h2>Status dos jogos</h2><p>O status escolhido aparece no catálogo público.</p></div><button id="resetGames" class="admin-secondary">Restaurar padrão</button></div>
+    <div id="gameControls" class="game-controls"></div>
+  </section>
+
+  <section class="admin-card maintenance-card">
+    <div class="admin-card-head"><div><div class="eyebrow">SITE</div><h2>Modo manutenção</h2><p>Quando ativado, uma tela cheia bloqueia o Game Center e informa os jogadores.</p></div><label class="switch"><input id="maintenanceEnabled" type="checkbox"><span></span></label></div>
+    <div class="maintenance-form">
+      <label>Título<input id="maintenanceTitle" maxlength="70" value="Estamos em manutenção"></label>
+      <label>Mensagem<textarea id="maintenanceMessage" maxlength="220">Estamos realizando algumas melhorias no Forge Game Center. Voltaremos logo.</textarea></label>
+      <label>Previsão de retorno <input id="maintenanceReturn" type="datetime-local"></label>
+      <label>Texto do botão (opcional)<input id="maintenanceButton" maxlength="40" placeholder="Aguardar retorno"></label>
+    </div>
+    <button id="saveMaintenance" class="admin-primary">Salvar manutenção</button><span id="saveFeedback" class="admin-feedback"></span>
+  </section>
+
+  <section class="admin-card">
+    <div class="admin-card-head"><div><div class="eyebrow">PRÉVIA</div><h2>Testar como jogador</h2><p>Abra o site público para verificar os estados.</p></div><a class="admin-primary link-button" href="index.html">Abrir Game Center →</a></div>
+    <div class="admin-warning">☁️ <b>Sincronização online:</b> os estados dos jogos e o modo manutenção são salvos no Supabase e podem ser refletidos para todos os jogadores conectados.</div>
+  </section>
+</div>
+</main>
+<script src="admin.js?v=20260922-3" defer></script>
+</body></html>
