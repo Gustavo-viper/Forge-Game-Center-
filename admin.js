@@ -4,7 +4,7 @@
 const SUPABASE_URL='https://pveivfqmeuswycgmpnue.supabase.co';
 const SUPABASE_KEY='sb_publishable_Qpuk0Q-UsRKUP0jNgkzvAA_MymEGzQ8';
 const CDNS=['https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js','https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js'];
-const defaultGames={cyber:{name:'Cyber Detective',image:'assets/cyber-detective.png',status:'available',url:'https://jogos-forge.onrender.com'},pet:{name:'Forge Pet',image:'assets/forge-pet.png',status:'updating',url:'#'},hangman:{name:'Hangman Pro',image:'assets/hangman-pro.png',status:'available',url:'https://hangman-pro-jbdl.onrender.com'},words:{name:'Palavras Ocultas',image:'assets/palavras-ocultas.png',status:'updating',url:'#'}};
+const defaultGames={cyber:{name:'Cyber Detective',image:'assets/cyber-detective.png',status:'available',url:'https://jogos-forge.onrender.com'},pet:{name:'Forge Pet',image:'assets/forge-pet.png',status:'updating',url:'#'},hangman:{name:'Hangman Pro',image:'assets/hangman-pro.png',status:'available',url:'https://hagman-pro-forge.onrender.com'},words:{name:'Palavras Ocultas',image:'assets/palavras-ocultas.png',status:'updating',url:'#'}};
 const labels={available:['PRONTO','O jogo está disponível para jogar.'],updating:['ATUALIZANDO','O jogo está recebendo atualizações.'],soon:['EM BREVE','O jogo está sendo preparado.'],offline:['INDISPONÍVEL','O jogo está temporariamente indisponível.']};
 let sb=null,games=clone(defaultGames),maintenance={enabled:false,title:'Estamos em manutenção',message:'Estamos realizando algumas melhorias no Forge Game Center. Voltaremos logo.',returnAt:'',button:'Aguardar retorno'},channel=null;
 let cache={ideas:[],news:[],roadmap:[],announcements:[],logs:[]};
