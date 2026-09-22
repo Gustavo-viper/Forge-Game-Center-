@@ -175,7 +175,7 @@
         next[row.game_id] = {
           name: row.name,
           status: row.status,
-          url: row.game_id === 'hangman' ? 'https://hangman-pro-jbdl.onrender.com' : (row.url || '#')
+          url: row.game_id === 'hangman' ? 'https://hagman-pro-forge.onrender.com' : (row.url || '#')
         };
       }
       games = {...defaults, ...next};
