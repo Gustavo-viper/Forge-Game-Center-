@@ -1,8 +1,11 @@
-const CACHE = 'forge-game-center-v11';
+const CACHE = 'forge-game-center-v12-embedded-words';
 const APP_SHELL = [
   './', './index.html', './style.css', './app.js', './manifest.json',
   './assets/forge-game-center.png', './assets/cyber-detective.png',
-  './assets/forge-pet.png', './assets/hangman-pro.png', './assets/palavras-ocultas.png'
+  './assets/forge-pet.png', './assets/hangman-pro.png', './assets/palavras-ocultas.png',
+  './games/palavras-ocultas/index.html', './games/palavras-ocultas/style.css',
+  './games/palavras-ocultas/manifest.webmanifest', './games/palavras-ocultas/assets/palavras-ocultas-logo.jpg',
+  './games/palavras-ocultas/assets/icon-512.png', './games/palavras-ocultas/sw.js'
 ];
 
 self.addEventListener('install', event => {

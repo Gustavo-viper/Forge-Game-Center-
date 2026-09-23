@@ -25,3 +25,9 @@ Para Android e Windows, a instalação como aplicativo é feita pelo Chrome/Edge
 - Android app loads the Central from local packaged assets; games remain external browser links.
 - Windows app loads the Central locally; games remain external browser links.
 - Hangman Pro URL: https://hagman-pro-forge.onrender.com
+
+## v12 — Palavras Ocultas dentro da Central
+- Palavras Ocultas agora é carregado localmente em `games/palavras-ocultas/`.
+- O jogo abre em uma janela interna da Central, sem navegar para outro site.
+- Os arquivos essenciais do jogo entram no cache da Central para uso offline.
+- O mesmo conteúdo foi incluído nos assets locais do Android e nos pacotes Android/Windows.

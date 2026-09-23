@@ -159,10 +159,20 @@
   <div><div class="eyebrow">FORGE STUDIOS</div><h2>Um universo.<br><span>Vários jogos.</span></h2><p>O Forge Game Center é o portal da Forge Studios para reunir nossos projetos. Não existe login no portal: cada jogo possui seu próprio sistema de conta e progresso.</p><div class="about-links"><a href="#jogos">🎮 Jogos</a><a href="#news">📰 Notícias</a><a href="#roadmap">🗺️ Roadmap</a></div></div>
 </section>
 </main>
+<div id="embeddedGameModal" class="embedded-game-modal" hidden aria-hidden="true">
+  <div class="embedded-game-shell">
+    <div class="embedded-game-topbar">
+      <div class="embedded-game-title"><img src="assets/palavras-ocultas.png" alt=""> <span>PALAVRAS OCULTAS</span><small>FORGE STUDIOS</small></div>
+      <button id="embeddedGameClose" class="embedded-game-close" type="button" aria-label="Fechar jogo">×</button>
+    </div>
+    <div class="embedded-game-frame-wrap"><iframe id="embeddedGameFrame" title="Palavras Ocultas" src="about:blank" loading="eager" allow="fullscreen"></iframe></div>
+  </div>
+</div>
+
 <div id="statusModal" class="status-modal" hidden><div class="status-dialog"><button id="statusClose" class="status-close" type="button">×</button><div id="statusIcon" class="status-icon">🎮</div><div id="statusEyebrow" class="eyebrow">FORGE GAME CENTER</div><h2 id="statusTitle">Jogo</h2><p id="statusText"></p><a id="statusAction" class="btn primary" href="#">Continuar</a></div></div>
 
 <footer><div class="footer-brand"><img src="assets/forge-game-center.png" alt=""><b>FORGE GAME CENTER</b></div><div>© 2026 Forge Studios</div><div>JOGOS • PROJETOS • EXPERIÊNCIAS</div><a class="admin-footer-link" href="admin.html">Admin</a></footer>
-<script src="app.js?v=20260923-10"></script>
+<script src="app.js?v=20260923-11"></script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script>
 </body>
 </html>

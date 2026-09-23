@@ -15,7 +15,7 @@
     cyber:{name:'Cyber Detective',status:'available',url:'https://jogos-forge.onrender.com'},
     pet:{name:'Forge Pet',status:'updating',url:'#'},
     hangman:{name:'Hangman Pro',status:'available',url:'https://hagman-pro-forge.onrender.com'},
-    words:{name:'Palavras Ocultas',status:'updating',url:'#'}
+    words:{name:'Palavras Ocultas',status:'available',url:'./games/palavras-ocultas/index.html',embedded:true}
   };
 
   const statusInfo = {
@@ -90,6 +90,28 @@
       const btn = card.querySelector('.card-btn');
       if(btn) btn.textContent = g.status === 'available' ? 'Jogar agora →' : 'Ver status →';
     });
+  }
+
+  function openEmbeddedGame(id){
+    if(id !== 'words') return false;
+    const modal = $('#embeddedGameModal');
+    const frame = $('#embeddedGameFrame');
+    if(!modal || !frame) return false;
+    if(frame.getAttribute('src') !== './games/palavras-ocultas/index.html'){
+      frame.setAttribute('src','./games/palavras-ocultas/index.html');
+    }
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('game-open');
+    return true;
+  }
+
+  function closeEmbeddedGame(){
+    const modal = $('#embeddedGameModal');
+    const frame = $('#embeddedGameFrame');
+    if(modal) { modal.hidden = true; modal.setAttribute('aria-hidden','true'); }
+    if(frame) frame.setAttribute('src','about:blank');
+    document.body.classList.remove('game-open');
   }
 
   function openStatus(id){
@@ -215,7 +237,7 @@
         next[row.game_id] = {
           name: row.name,
           status: row.status,
-          url: row.game_id === 'hangman' ? 'https://hagman-pro-forge.onrender.com' : (row.url || '#')
+          url: row.game_id === 'hangman' ? 'https://hagman-pro-forge.onrender.com' : (row.game_id === 'words' ? './games/palavras-ocultas/index.html' : (row.url || '#'))
         };
       }
       games = {...defaults, ...next};
@@ -278,6 +300,10 @@
     e.preventDefault();
     const id = a.dataset.game;
     const g = games[id] || defaults[id];
+    if(id === 'words' && g.status === 'available'){
+      openEmbeddedGame(id);
+      return;
+    }
     if(g.status === 'available' && g.url && g.url !== '#'){
       window.location.href = g.url;
     }else{
@@ -285,11 +311,15 @@
     }
   }));
 
+  $('#embeddedGameClose')?.addEventListener('click',closeEmbeddedGame);
+  $('#embeddedGameModal')?.addEventListener('click',e=>{
+    if(e.target.id === 'embeddedGameModal') closeEmbeddedGame();
+  });
   $('#statusClose')?.addEventListener('click',closeStatus);
   $('#statusModal')?.addEventListener('click',e=>{
     if(e.target.id === 'statusModal') closeStatus();
   });
-  document.addEventListener('keydown',e=>{ if(e.key === 'Escape') closeStatus(); });
+  document.addEventListener('keydown',e=>{ if(e.key === 'Escape'){ closeStatus(); closeEmbeddedGame(); } });
 
   // Boot local first. The Central must render even with zero connectivity.
   loadOfflineState();
