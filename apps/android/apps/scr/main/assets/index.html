@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Forge Game Center — jogos, novidades e projetos da Forge Studios.">
+<meta name="theme-color" content="#0b8cff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<title>Forge Game Center — Forge Studios</title>
+<link rel="icon" href="assets/forge-game-center.png">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+
+<div id="cloudSyncBadge" class="cloud-sync-badge" title="Status sincronizado com a Forge">☁️ <span>Online</span></div>
+<div id="maintenanceScreen" class="maintenance-screen" hidden><div class="maintenance-orbit">⚙</div><div class="maintenance-content"><div class="eyebrow">FORGE GAME CENTER</div><h1 id="maintenanceTitlePublic">Estamos em manutenção</h1><p id="maintenanceMessagePublic">Estamos realizando algumas melhorias. Voltaremos logo.</p><div id="maintenanceReturnPublic" class="maintenance-return"></div><button id="maintenanceButtonPublic" class="btn primary" type="button">Aguardar retorno</button></div></div>
+<header class="topbar">
+  <a class="brand" href="#inicio"><img src="assets/forge-game-center.png" alt="Forge Game Center"><span><b>FORGE</b><small>GAME CENTER</small></span></a>
+  <button class="menu" aria-label="Abrir menu">☰</button>
+  <nav id="nav">
+    <a href="#inicio">Início</a><a href="#jogos">Jogos</a><a href="#desenvolvimento">Em desenvolvimento</a>
+    <a href="#news">Notícias</a><a href="#roadmap">Roadmap</a><a href="#sobre">Forge Studios</a>
+  </nav>
+  <a class="header-cta" href="#downloads">Baixar Central <span>↓</span></a>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">● FORGE STUDIOS</div>
+    <h1>JOGOS QUE<br><span>GANHAM VIDA.</span></h1>
+    <p>Bem-vindo ao Forge Game Center. Descubra nossos jogos, acompanhe os projetos em desenvolvimento e entre diretamente nas experiências da Forge Studios.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#jogos">🎮 Ver jogos <b>→</b></a>
+      <a class="btn secondary" href="#news">📰 Novidades</a>
+    </div>
+    <div class="hero-stats"><div><b>01</b><span>DISPONÍVEL</span></div><div><b>03</b><span>EM DESENVOLVIMENTO</span></div><div><b>04</b><span>PROJETOS</span></div></div>
+  </div>
+  <div class="hero-art"><img src="assets/forge-game-center.png" alt="Logo Forge Game Center"></div>
+</section>
+
+<section id="jogos" class="section">
+  <div class="section-head"><div><div class="eyebrow">CATÁLOGO</div><h2>Todos os jogos</h2></div><span>Escolha uma experiência e comece a jogar.</span></div>
+  <div class="games-grid">
+    <article class="game-card featured" data-game-card="cyber">
+      <a class="cover game-launch" data-game="cyber" href="https://jogos-forge.onrender.com"><img src="assets/cyber-detective.png" alt="Cyber Detective"><div class="shade"></div><label class="status available game-status">● DISPONÍVEL</label><div class="play">▶</div></a>
+      <div class="card-body"><div class="meta"><span>INVESTIGAÇÃO</span><b>WEB</b></div><h3>Cyber Detective</h3><p>Investigue casos, conecte pistas e descubra a verdade por trás de crimes digitais.</p><a class="card-btn game-launch" data-game="cyber" href="https://jogos-forge.onrender.com">Jogar agora →</a></div>
+    </article>
+    <article class="game-card" data-game-card="pet">
+      <a class="cover game-launch" data-game="pet" href="#"><img src="assets/forge-pet.png" alt="Forge Pet"><div class="shade"></div><label class="status dev game-status">● EM DESENVOLVIMENTO</label></a>
+      <div class="card-body"><div class="meta"><span>PET VIRTUAL</span><b>EM BREVE</b></div><h3>Forge Pet</h3><p>Cuide, alimente, brinque e acompanhe a evolução do seu pet em uma experiência 3D.</p><a class="card-btn game-launch secondary-launch" data-game="pet" href="#">Ver status →</a></div>
+    </article>
+    <article class="game-card" data-game-card="hangman">
+      <a class="cover game-launch" data-game="hangman" href="#"><img src="assets/hangman-pro.png" alt="Hangman Pro"><div class="shade"></div><label class="status dev game-status">● EM DESENVOLVIMENTO</label></a>
+      <div class="card-body"><div class="meta"><span>PALAVRAS</span><b>EM BREVE</b></div><h3>Hangman Pro</h3><p>O clássico jogo da forca transformado em uma experiência com desafios e progressão.</p><a class="card-btn game-launch secondary-launch" data-game="hangman" href="#">Ver status →</a></div>
+    </article>
+    <article class="game-card" data-game-card="words">
+      <a class="cover game-launch" data-game="words" href="#"><img src="assets/palavras-ocultas.png" alt="Palavras Ocultas"><div class="shade"></div><label class="status dev game-status">● EM DESENVOLVIMENTO</label></a>
+      <div class="card-body"><div class="meta"><span>PUZZLE</span><b>EM BREVE</b></div><h3>Palavras Ocultas</h3><p>Encontre palavras escondidas, complete fases e desafie sua pontuação.</p><a class="card-btn game-launch secondary-launch" data-game="words" href="#">Ver status →</a></div>
+    </article>
+  </div>
+</section>
+
+<section id="downloads" class="section download-section">
+  <div class="section-head"><div><div class="eyebrow">FORGE APP</div><h2>Baixe a Central</h2></div><span>A central funciona offline. Os jogos continuam abrindo no navegador.</span></div>
+  <div class="download-grid">
+    <article class="download-card">
+      <div class="download-icon">🤖</div><div class="download-copy"><span class="download-platform">ANDROID</span><h3>Forge Game Center</h3><p>Instale a Central como aplicativo no Android. O catálogo, notícias e interface podem ser usados offline depois da primeira sincronização.</p></div>
+      <a class="btn primary download-btn" href="downloads/Forge-Game-Center-Android.apk" download>Baixar Android ↓</a>
+    </article>
+    <article class="download-card">
+      <div class="download-icon">🪟</div><div class="download-copy"><span class="download-platform">WINDOWS</span><h3>Forge Game Center</h3><p>Pacote para Windows com a Central offline. Os jogos não são instalados: ao jogar, eles continuam abrindo no navegador.</p></div>
+      <a class="btn primary download-btn" href="downloads/Forge-Game-Center-Setup.exe" download>Baixar Windows ↓</a>
+    </article>
+    <article class="download-card soon-download">
+      <div class="download-icon"></div><div class="download-copy"><span class="download-platform">iOS</span><h3>Em breve</h3><p>A versão para iPhone e iPad está sendo preparada.</p></div>
+      <button class="btn secondary download-btn" type="button" disabled>Em breve</button>
+    </article>
+  </div>
+  <div class="download-note"><strong>☁️ Importante:</strong> o download é somente da <b>Central Forge</b>. Cyber Detective, Hangman Pro e os demais jogos continuam sendo executados no navegador.</div>
+</section>
+
+<section id="desenvolvimento" class="section development-section">
+  <div class="section-head"><div><div class="eyebrow">FORGE LABS</div><h2>Em desenvolvimento</h2></div><span>Projetos que estão ganhando forma.</span></div>
+  <div class="dev-list">
+    <div class="dev-item"><img src="assets/forge-pet.png" alt=""><div><small>PROJETO 01</small><h3>Forge Pet</h3><p>Experiência de pet virtual em 3D.</p></div><strong>● PRODUÇÃO</strong></div>
+    <div class="dev-item"><img src="assets/hangman-pro.png" alt=""><div><small>PROJETO 02</small><h3>Hangman Pro</h3><p>Jogo de palavras com progressão.</p></div><strong>● PRODUÇÃO</strong></div>
+    <div class="dev-item"><img src="assets/palavras-ocultas.png" alt=""><div><small>PROJETO 03</small><h3>Palavras Ocultas</h3><p>Puzzle de palavras e desafios.</p></div><strong>● PRODUÇÃO</strong></div>
+  </div>
+</section>
+
+<section id="news" class="section">
+  <div class="section-head"><div><div class="eyebrow">FORGE NEWS</div><h2>Novidades</h2></div><span>Atualizações publicadas pelo painel ADM.</span></div>
+  <div id="publicAnnouncements" class="public-announcements" hidden></div>
+  <div id="publicNewsGrid" class="news-grid"><div class="empty-public">Carregando novidades…</div></div>
+</section>
+
+<section id="roadmap" class="section">
+  <div class="section-head"><div><div class="eyebrow">PLANEJAMENTO</div><h2>Roadmap</h2></div><span>Uma visão dos próximos passos.</span></div>
+  <div class="timeline">
+    <div class="milestone done"><i>✓</i><div><small>CONCLUÍDO</small><h3>Cyber Detective</h3><p>Primeiro jogo disponível no Forge Game Center.</p></div></div>
+    <div class="milestone"><i>02</i><div><small>EM PRODUÇÃO</small><h3>Forge Pet</h3><p>Desenvolvimento da experiência 3D e sistemas do pet.</p></div></div>
+    <div class="milestone"><i>03</i><div><small>EM PRODUÇÃO</small><h3>Hangman Pro</h3><p>Gameplay, fases, progressão e identidade visual.</p></div></div>
+    <div class="milestone"><i>04</i><div><small>EM PRODUÇÃO</small><h3>Palavras Ocultas</h3><p>Grade, fases, desafios e evolução do jogador.</p></div></div>
+  </div>
+</section>
+
+<section id="forge-labs" class="section forge-lab-section">
+  <div class="section-head"><div><div class="eyebrow">🧪 FORGE LABS</div><h2>Ajude a criar o próximo jogo.</h2></div><span>A comunidade também faz parte da Forge.</span></div>
+  <div class="lab-intro">
+    <div>
+      <h3>💡 Sua ideia pode virar realidade.</h3>
+      <p>Conte para a Forge Studios uma ideia de jogo ou diga o que você gostaria de ver dentro de um dos nossos jogos. Não precisa ter conhecimento técnico — queremos ouvir a comunidade.</p>
+      <div class="idea-types"><span>🎮 Novo jogo</span><span>✨ Nova função</span><span>🧩 Nova fase</span><span>💡 Sugestão</span></div>
+    </div>
+    <div class="lab-mark">F<br><span>LABS</span></div>
+  </div>
+
+  <form id="ideaForm" class="idea-form">
+    <div class="form-head"><div><h3>Enviar uma ideia</h3><p>O formulário não exige login.</p></div><span>FORGE COMMUNITY</span></div>
+    <div class="form-grid">
+      <label>Seu nome <input id="ideaName" maxlength="40" placeholder="Como podemos chamar você?"></label>
+      <label>Tipo de ideia
+        <select id="ideaType">
+          <option value="Novo jogo">🎮 Novo jogo</option>
+          <option value="Função para um jogo">✨ Função para um jogo</option>
+          <option value="Fase / desafio">🧩 Fase / desafio</option>
+          <option value="Melhoria">🛠️ Melhoria</option>
+        </select>
+      </label>
+      <label>Para qual jogo?
+        <select id="ideaGame">
+          <option>Forge Studios / novo jogo</option>
+          <option>Cyber Detective</option>
+          <option>Forge Pet</option>
+          <option>Hangman Pro</option>
+          <option>Palavras Ocultas</option>
+        </select>
+      </label>
+      <label class="full">Sua ideia <textarea id="ideaText" maxlength="1000" required placeholder="Conte sua ideia com o máximo de detalhes que quiser..."></textarea></label>
+    </div>
+    <div class="form-footer"><small><span id="ideaCount">0</span>/1000 caracteres</small><button class="idea-submit" type="submit">Enviar ideia 🚀</button></div>
+    <div id="ideaMessage" class="idea-message" aria-live="polite"></div>
+  </form>
+
+  <div class="submitted-box">
+    <div><span class="eyebrow">NESTE DISPOSITIVO</span><h3>Suas ideias enviadas</h3></div>
+    <div id="ideaList"><p>Nenhuma ideia enviada ainda.</p></div>
+  </div>
+</section>
+
+<section id="sobre" class="about">
+  <img src="assets/forge-game-center.png" alt="Forge Game Center">
+  <div><div class="eyebrow">FORGE STUDIOS</div><h2>Um universo.<br><span>Vários jogos.</span></h2><p>O Forge Game Center é o portal da Forge Studios para reunir nossos projetos. Não existe login no portal: cada jogo possui seu próprio sistema de conta e progresso.</p><div class="about-links"><a href="#jogos">🎮 Jogos</a><a href="#news">📰 Notícias</a><a href="#roadmap">🗺️ Roadmap</a></div></div>
+</section>
+</main>
+<div id="statusModal" class="status-modal" hidden><div class="status-dialog"><button id="statusClose" class="status-close" type="button">×</button><div id="statusIcon" class="status-icon">🎮</div><div id="statusEyebrow" class="eyebrow">FORGE GAME CENTER</div><h2 id="statusTitle">Jogo</h2><p id="statusText"></p><a id="statusAction" class="btn primary" href="#">Continuar</a></div></div>
+
+<footer><div class="footer-brand"><img src="assets/forge-game-center.png" alt=""><b>FORGE GAME CENTER</b></div><div>© 2026 Forge Studios</div><div>JOGOS • PROJETOS • EXPERIÊNCIAS</div><a class="admin-footer-link" href="admin.html">Admin</a></footer>
+<script src="app.js?v=20260923-10"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script>
+</body>
+</html>

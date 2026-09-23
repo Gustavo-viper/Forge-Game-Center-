@@ -1,0 +1,10 @@
+{
+  "name":"forge-game-center-windows",
+  "version":"1.0.0",
+  "description":"Forge Game Center para Windows",
+  "main":"main.js",
+  "scripts":{"start":"electron .","dist":"electron-builder --win nsis"},
+  "dependencies":{"electron":"^38.2.0"},
+  "devDependencies":{"electron-builder":"^26.0.12"},
+  "build":{"appId":"com.forge.gamecenter","productName":"Forge Game Center","files":["main.js","../../index.html","../../style.css","../../app.js","../../sw.js","../../manifest.json","../../assets/**/*"],"win":{"target":"nsis","artifactName":"Forge-Game-Center-Setup-${version}.${ext}"}}
+}
