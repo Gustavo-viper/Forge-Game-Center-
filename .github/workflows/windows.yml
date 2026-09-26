@@ -1,0 +1,35 @@
+name: Build Forge Game Center Windows
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'apps/windows/**'
+      - 'index-2.html'
+      - 'style-2.css'
+      - 'app-2.js'
+      - 'sw-2.js'
+      - 'manifest-2.json'
+      - 'assets/**'
+      - '.github/workflows/windows.yml'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: apps/windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/windows/package.json
+      - name: Install dependencies
+        run: npm install
+      - name: Build installer
+        run: npm run dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Forge-Game-Center-Windows
+          path: apps/windows/dist/*.exe
