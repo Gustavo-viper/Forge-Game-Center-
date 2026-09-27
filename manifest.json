@@ -1,6 +1,6 @@
 {
-  "name": "Forge Game Center",
-  "short_name": "Forge Game Center",
+  "name": "Forge Game Center v10",
+  "short_name": "Forge Center",
   "description": "Central da Forge Studios para jogos, novidades e projetos.",
   "lang": "pt-BR",
   "start_url": "./index.html",

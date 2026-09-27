@@ -15,7 +15,7 @@
     cyber:{name:'Cyber Detective',status:'available',url:'https://jogos-forge.onrender.com'},
     pet:{name:'Forge Pet',status:'updating',url:'#'},
     hangman:{name:'Hangman Pro',status:'available',url:'https://hagman-pro-forge.onrender.com'},
-    words:{name:'Palavras Ocultas',status:'updating',url:'#'}
+    words:{name:'Palavras Ocultas',status:'available',url:'./games/palavras-ocultas/index.html',embedded:true}
   };
 
   const statusInfo = {
@@ -92,6 +92,28 @@
     });
   }
 
+  function openEmbeddedGame(id){
+    if(id !== 'words') return false;
+    const modal = $('#embeddedGameModal');
+    const frame = $('#embeddedGameFrame');
+    if(!modal || !frame) return false;
+    if(frame.getAttribute('src') !== './games/palavras-ocultas/index.html'){
+      frame.setAttribute('src','./games/palavras-ocultas/index.html');
+    }
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('game-open');
+    return true;
+  }
+
+  function closeEmbeddedGame(){
+    const modal = $('#embeddedGameModal');
+    const frame = $('#embeddedGameFrame');
+    if(modal) { modal.hidden = true; modal.setAttribute('aria-hidden','true'); }
+    if(frame) frame.setAttribute('src','about:blank');
+    document.body.classList.remove('game-open');
+  }
+
   function openStatus(id){
     const g = games[id] || defaults[id];
     const info = statusInfo[g.status] || statusInfo.updating;
@@ -140,7 +162,7 @@
     return response.json();
   }
 
-  const LOCAL_CACHE_KEY = 'forge-game-center-offline-cache-v10';
+  const LOCAL_CACHE_KEY = 'forge-game-center-offline-cache-v11';
 
   function saveOfflineState(){
     try{ localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify({games, maintenance, news:publicNews, announcements:publicAnnouncements, savedAt:new Date().toISOString()})); }catch(e){}
@@ -169,6 +191,13 @@
   }
 
   async function loadCloud(force=false){
+    // Offline-first: the local interface is the source of truth for startup.
+    // Never block or repeatedly hit the network while offline.
+    if(!navigator.onLine){
+      loadOfflineState();
+      setCloud(false);
+      return;
+    }
     if(loading && !force) return;
     loading = true;
 
@@ -208,7 +237,7 @@
         next[row.game_id] = {
           name: row.name,
           status: row.status,
-          url: row.game_id === 'hangman' ? 'https://hagman-pro-forge.onrender.com' : (row.url || '#')
+          url: row.game_id === 'hangman' ? 'https://hagman-pro-forge.onrender.com' : (row.game_id === 'words' ? './games/palavras-ocultas/index.html' : (row.url || '#'))
         };
       }
       games = {...defaults, ...next};
@@ -271,6 +300,10 @@
     e.preventDefault();
     const id = a.dataset.game;
     const g = games[id] || defaults[id];
+    if(id === 'words' && g.status === 'available'){
+      openEmbeddedGame(id);
+      return;
+    }
     if(g.status === 'available' && g.url && g.url !== '#'){
       window.location.href = g.url;
     }else{
@@ -278,20 +311,25 @@
     }
   }));
 
+  $('#embeddedGameClose')?.addEventListener('click',closeEmbeddedGame);
+  $('#embeddedGameModal')?.addEventListener('click',e=>{
+    if(e.target.id === 'embeddedGameModal') closeEmbeddedGame();
+  });
   $('#statusClose')?.addEventListener('click',closeStatus);
   $('#statusModal')?.addEventListener('click',e=>{
     if(e.target.id === 'statusModal') closeStatus();
   });
-  document.addEventListener('keydown',e=>{ if(e.key === 'Escape') closeStatus(); });
+  document.addEventListener('keydown',e=>{ if(e.key === 'Escape'){ closeStatus(); closeEmbeddedGame(); } });
 
-  renderPublicContent();
+  // Boot local first. The Central must render even with zero connectivity.
+  loadOfflineState();
   updateNetworkState();
   window.addEventListener('online',()=>loadCloud(true));
-  window.addEventListener('offline',updateNetworkState);
+  window.addEventListener('offline',()=>{ loadOfflineState(); setCloud(false); });
 
-  // Primeira leitura + atualização frequente. Assim o jogador recebe alterações do ADM mesmo se o Realtime estiver bloqueado.
-  loadCloud(true);
-  setInterval(()=>loadCloud(false),5000);
+  // Synchronize only when connectivity exists. Local cached data remains usable offline.
+  if(navigator.onLine) loadCloud(true);
+  setInterval(()=>{ if(navigator.onLine) loadCloud(false); },5000);
 
   /* Forge Labs — ideias locais nesta versão. */
   const ideaForm=$('#ideaForm'),ideaText=$('#ideaText'),ideaCount=$('#ideaCount'),ideaList=$('#ideaList'),ideaMessage=$('#ideaMessage'),STORAGE_KEY='forgeGameCenterIdeas';
